@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { ExpendableButton } from './ExpandableButton';
-import useOpenController from "../Hooks/UseOpenController";
+import useOpenController from "../Hooks/useOpenController";
 import NestedDetailTable from "./NestedDetailTable";
 import { useEffect, useState } from 'react';
 import { ApiServices } from '../Services/ApiServices';
