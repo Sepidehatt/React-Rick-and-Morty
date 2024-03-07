@@ -17,7 +17,6 @@ const Characters = () => {
     }
     fetchCharacters()
   }, [])
-  console.log(characters.results)
   return (
     <>
       <div>Characters</div>
