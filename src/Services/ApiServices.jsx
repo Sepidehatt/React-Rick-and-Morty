@@ -6,9 +6,10 @@ export class ApiServices {
       this.httpClient = httpClient;
     }
 
-    async getCharacters(){
+    async getCharacters(query){
       try {
-        const response = await this.httpClient.get(`${baseUrl}/character`)
+
+        const response = await this.httpClient.get(`${baseUrl}/character/?page=${query.page}&name=${query.name}`)
         return response.json();
       } catch (error) {
         console.log(error)
