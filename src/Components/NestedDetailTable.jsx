@@ -1,21 +1,33 @@
 /* eslint-disable react/prop-types */
 
-const NestedDetailTable = ({character}) => {
+const NestedDetailTable = ({character, episodes}) => {
   return (
     <tr>
-      <td></td>
-      <td><img src={character.image}/></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      { 
-        <ul>
-          {character.episode?.map((e, index) => (
-            <li key={index}>{e}</li>
-          ))}
-        </ul>
-       }
+      <td style={{display: 'flex',flexDirection:'row'}}>
+        <div><img src={character.image}/></div>
+        <table style={{border: '1px solid black'}}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Episode</th>
+            </tr>
+          </thead>
+          <tbody>
+          {episodes && 
+             episodes.map(e =>{
+            return (
+              <tr key={e.id}>
+              <td>{e.name}</td>
+              <td>{e.air_date}</td>
+              <td>{e.episode}</td>
+            </tr>
+            )
+          })
+            }
+          </tbody>
+        </table>
+      </td>
       </tr>
   )
 }
