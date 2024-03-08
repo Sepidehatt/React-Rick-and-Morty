@@ -1,11 +1,12 @@
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
 
-function App() {
-
+const App = () => {
   return (
-    <>
-     Rick And Morty
-    </>
-  )
-}
+    <Routes>
+          <Route  path="/" element={<HomePage />} />
+    </Routes>
+  );
+};
 
 export default App
