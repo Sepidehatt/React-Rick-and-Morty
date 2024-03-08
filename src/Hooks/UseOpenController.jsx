@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-export default function useOpenController(initialState) {
+const useOpenController = (initialState) => {
   const [isOpen, setOpenState] = useState(initialState);
 
   const toggle = useCallback(() => {
@@ -9,3 +9,5 @@ export default function useOpenController(initialState) {
 
   return { isOpen, toggle };
 }
+
+export default useOpenController
