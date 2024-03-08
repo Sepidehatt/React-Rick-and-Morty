@@ -1,5 +1,5 @@
 import CharacterDetail from './CharacterDetail'
-import GenericButton from "./GenericButton"
+import GenericButton from "./GenericButton/GenericButton"
 import {useCharacters} from '../Context/CharactersContext'
 
 const Characters = ({ currentPage, setCurrentPage, totalPages }) => {
