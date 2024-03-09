@@ -16,15 +16,6 @@ export class ApiServices {
       }
     }
 
-    // async getEpisodes(){
-    //   try {
-    //     const response = await this.httpClient.get()
-    //     return response.json();
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
-
     async getEpisode(url){
       try {
         const response = await this.httpClient.get(url)
