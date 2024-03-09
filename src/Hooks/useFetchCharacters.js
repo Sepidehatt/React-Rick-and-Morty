@@ -1,14 +1,19 @@
-import { useEffect } from 'react';
-import { useCharacters } from '../Context/CharactersContext';
+import { useEffect, useState } from 'react';
+import { ApiServices } from '../Services/ApiServices';
+import { FetchClient } from '../ServiceClients/FetchClients';
 import { debounce } from 'lodash';
-import { ApiServices } from "../Services/ApiServices";
-import { FetchClient } from "../ServiceClients/FetchClients";
 
-const CharactersFetcher = ({ searchTerm, currentPage }) => {
-  const { setCharacters, setTotalPages } = useCharacters();
+const useFetchCharacters= ({ searchTerm, currentPage }) => {
+  const [characters, setCharacters] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const apiServices = new ApiServices(FetchClient);
 
   const fetchCharacters = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const query = {
         page: searchTerm ? 1 : currentPage,
@@ -17,11 +22,14 @@ const CharactersFetcher = ({ searchTerm, currentPage }) => {
 
       const response = await apiServices.getCharacters(query);
       setCharacters(response.results || []);
-      setTotalPages(response.info.pages || 0);
+      setTotalPages(response.info?.pages || 0);
     } catch (error) {
       console.error("Failed to fetch characters:", error);
       setCharacters([]);
       setTotalPages(0);
+      setError(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,7 +40,7 @@ const CharactersFetcher = ({ searchTerm, currentPage }) => {
     return () => debouncedFetch.cancel();
   }, [searchTerm, currentPage]);
 
-  return null; 
+  return { characters, totalPages, loading, error };
 };
 
-export default CharactersFetcher
+export default useFetchCharacters;
