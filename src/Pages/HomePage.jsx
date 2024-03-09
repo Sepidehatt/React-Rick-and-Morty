@@ -1,29 +1,18 @@
-import { useState } from 'react'
 import SearchBar from '../Components/SearchBar/SearchBAr';
-import CharactersFetcher from '../Components/CharactersFetcher';
 import Characters from '../Components/Characters';
-import { CharactersProvider, useCharacters } from '../Context/CharactersContext';
+import { CharactersProvider } from '../Context/CharactersContext';
+import CharactersPagination from '../Components/CharactersPagination';
 
 const HomePage = () => {
-
-  const HomeContent = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const { totalPages } = useCharacters();
-  
-    return (
-      <>
-        <SearchBar setSearchTerm={setSearchTerm} />
-        <CharactersFetcher searchTerm={searchTerm} currentPage={currentPage} />
-        <Characters currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
-      </>
-    );
-  };
   return (
     <CharactersProvider>
-      <HomeContent />
+      <>
+        <SearchBar />
+        <Characters />
+        <CharactersPagination />
+      </>
     </CharactersProvider>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
