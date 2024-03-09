@@ -1,28 +1,24 @@
-const baseUrl = 'https://rickandmortyapi.com/api'
+import { fetchClient } from "../ServiceClients/FetchClients";
 
-export class ApiServices {
-  
-    constructor(httpClient) {
-      this.httpClient = httpClient;
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+export const apiServices = {
+  getCharacters: async (query) => {
+    try {
+      const url = `${baseUrl}/character/?page=${query.page}&name=${query.name}`;
+      return await fetchClient.get(url);
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
+  },
 
-    async getCharacters(query){
-      try {
-
-        const response = await this.httpClient.get(`${baseUrl}/character/?page=${query.page}&name=${query.name}`)
-        return response.json();
-      } catch (error) {
-        console.log(error)
-      }
+  getEpisode: async (url) => {
+    try {
+      return await fetchClient.get(url);
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
-
-    async getEpisode(url){
-      try {
-        const response = await this.httpClient.get(url)
-        return response.json();
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-  }
+  },
+};

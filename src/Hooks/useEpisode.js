@@ -1,14 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ApiServices } from '../Services/ApiServices';
-import { FetchClient } from '../ServiceClients/FetchClients';
-
-const apiServices = new ApiServices(FetchClient);
+import { apiServices } from '../Services/ApiServices';
 
 const useEpisodes = (episodeUrls) => {
     const [episodes, setEpisodes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    // Initialize with 10 or the total number of episodes if fewer than 10
     const initialLoadAmount = Math.min(10, episodeUrls.length);
     const [loadAmount, setLoadAmount] = useState(initialLoadAmount);
 

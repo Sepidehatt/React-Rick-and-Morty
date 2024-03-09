@@ -15,7 +15,6 @@ const NestedDetailTable = ({ character }) => {
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         loadMore();
-        console.log({ episodes })
       }
     });
 

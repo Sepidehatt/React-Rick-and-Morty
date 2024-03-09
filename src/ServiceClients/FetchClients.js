@@ -1,6 +1,12 @@
 
-export const FetchClient ={
-  async get(url) {
-    return await fetch(url)
-  }
-}
+export const fetchClient = {
+  get: async (url) => {
+    try {
+      const response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+};

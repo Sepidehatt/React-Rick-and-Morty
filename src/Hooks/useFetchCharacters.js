@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ApiServices } from '../Services/ApiServices';
-import { FetchClient } from '../ServiceClients/FetchClients';
+import { apiServices } from '../Services/ApiServices';
 import { debounce } from 'lodash';
 
 const useFetchCharacters= ({ searchTerm, currentPage }) => {
@@ -8,8 +7,6 @@ const useFetchCharacters= ({ searchTerm, currentPage }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const apiServices = new ApiServices(FetchClient);
 
   const fetchCharacters = async () => {
     setLoading(true);
